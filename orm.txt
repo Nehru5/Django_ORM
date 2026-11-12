@@ -1,0 +1,20 @@
+ORM - Object Relational Mapping:
+->ORM is a Technique used to interact with database using Python objects and methods instead of using SQL queries to avoid SQL Injection.
+
+To clear python terminal
+import os
+os.system("cls")
+
+select *  from  User
+User.objects.all() - > select *  from  User
+
+
+CRUD(CREATE READ UPDATE DELTE)
+
+CREATE:
+  1. create()
+    Mobile.objects.create(name="Realme 5i",price=13000,ram=4,rom=64,battery=4500,processor="Snapdragon",camera=50,supplier="Kerala")
+  2. save()
+
+    product = Mobile(name="Lava A44",price = 4500,ram=1,rom=8,battery=2500,processor="Octocore",camera=16,supplier="Bengaluru")
+    product.save()

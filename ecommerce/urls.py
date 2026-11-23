@@ -16,7 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from mobileapp.views import send_mail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("send_mail/",send_mail)
 ]

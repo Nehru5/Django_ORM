@@ -14,7 +14,110 @@ CRUD(CREATE READ UPDATE DELTE)
 CREATE:
   1. create()
     Mobile.objects.create(name="Realme 5i",price=13000,ram=4,rom=64,battery=4500,processor="Snapdragon",camera=50,supplier="Kerala")
-  2. save()
 
+  2. save()
     product = Mobile(name="Lava A44",price = 4500,ram=1,rom=8,battery=2500,processor="Octocore",camera=16,supplier="Bengaluru")
     product.save()
+
+
+READ:
+  1.all():
+    >>> a = Mobile.objects.all()
+    >>> print(a)
+    <QuerySet [<Mobile: Samsung F23>, <Mobile: Oppo K13 Turbo Pro>, <Mobile: Realme 5i>, <Mobile: Lava A44>]>
+    >>> for i in a:
+    ...     print(i.name)
+    ...     print(i.price)
+    ...     print(i.supplier)
+    ...     print("----------------------------")
+
+  2.get():
+      >>> b = Mobile.objects.get(name = "Lava A44")
+      >>> print(b)
+      Lava A44
+      >>> print(b.price)
+      4500.00
+      >>> print(b.supplier)
+      Bengaluru
+      >>> print(b.ram)
+      1
+
+      2 Problems in get():
+        1. Multiple objects returned
+        2. Object does not exist
+
+
+
+      try:
+        a = Mobile.objects.get(name="Samsung F23")
+        print(a)
+      except Mobile.DoesNotExist:
+        print("Mobile not found")
+      except Mobile.MultipleObjectsReturned:
+        print("Multiple data found")
+      except Exception as e:
+        print(e)
+
+  3.filter():
+
+    >>> a = Mobile.objects.filter(name = "Micromax")
+    >>> print(a)
+    <QuerySet []>
+    >>> a = Mobile.objects.filter(name = "Samsung F23")
+    >>> print(a)
+    <QuerySet [<Mobile: Samsung F23>, <Mobile: Samsung F23>]>
+
+
+    lookups:
+      1. gt
+      2. gte
+      3. lt
+      4. lte
+      
+
+  4. update():
+
+    1. using filter()
+      Mobile.objects.filter(name = "Realme 5i").update(name = "Realme 5i Pro",price = 70000)
+
+    2. using get()
+      >>> a = Mobile.objects.get(name = "Lava A44")
+      >>> print(a.price)
+      4500.00
+      >>> a.price = 6500
+      >>> print(a.price)
+      6500
+
+
+  5. delete():
+
+    1. using filter():
+    Mobile.objects.filter(name="Redmi Note 10").delete()
+
+    2. using get():
+    >>> a = Mobile.objects.get(name = "Realme 5i Pro")
+    >>> a.delete()
+
+
+
+                                      Relationship in Django ORM
+1. One to One- > One Row in a table is linked with only one row in another table
+  ->One User can have only one profile
+  -> One student can have only one ID
+  ->One Person can have only one Passport
+
+2. One to Many->One row in a table is linked with Multiple rows in another table
+->One category - Multiple Products
+3. Many to Many
+->A student can enroll for multiple courses, in the same way a Course can have multiple students
+
+
+
+
+Types of server:
+1. Web server
+2. Application server
+3. Database server
+4. SMTP server
+5. File server
+6. Game server
